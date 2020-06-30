@@ -19,7 +19,7 @@ def product_view(request, pk):
     product = get_object_or_404(Product, id=pk)
     reviews = Review.objects.filter(product__id=pk)
     form = ReviewForm
-    reviewed_products = request.session['reviewed_products'] if request.session['reviewed_products'] else []
+    reviewed_products = request.session['reviewed_products'] if 'reviewed_products' in request.session else []
 
     if request.method == 'POST':
         if product.id not in reviewed_products:
